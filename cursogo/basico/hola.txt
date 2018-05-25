@@ -1,0 +1,3 @@
+hola mi nombre es junior
+mi apellido es escoto
+edad 23 años

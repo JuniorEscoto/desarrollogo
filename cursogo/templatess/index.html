@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hola desde una pagina html</h1>
+    <!--este user es el atributo que tenemos en la estructura usuario de la aplicacion paginadinamica.go-->
+    <h3>mi nombre sera {{.User}} y tiene la edad de {{.Edad}}</h3>
+
+
+
+
+    <!--haciendo usos de las condicionales de nuestro archivo condicionales.go-->
+    {{if .Activo}}
+        <p>Este usuario esta activo</p>
+    {{else}}
+        <p>Este no esta activo</p>
+    {{end}} <!--limita donde termina la condicional osea el bloque if-->
+
+
+    <!--modo de utilizacion del and de los if en caso de or solo ponemos or-->
+    {{if (and .Activo .Administrador)}}
+        <p>Eres Admnistrador</p>
+    {{end}}
+
+    <!--utilizacion de los basico mayor que gt, mayor o igual ge, menor que lt, menor o igula le, eq es para ==, y ne !=-->
+   
+    {{if (gt .Edad 23)}}
+        <p>eres mayor de edad</p>
+    {{end}}
+
+ 
+
+
+
+
+    <!--utilizacion de ciclos-->
+
+    <!--metodo range-->
+    <p>lenguajes</p>
+    <ul>
+        {{range .Lenguaje}}
+        <li>{{.}}</li> <!--que imprima lo que se esta recorriendo en este caso los lenguajes-->
+        {{end}}
+    </ul>
+
+
+    
+    <p>cursos</p>
+    <ul>
+        {{range .Cursos}}
+        <li> el curso: {{.Name}} y la duracion: {{.Duracion}}</li>
+        {{end}}
+    </ul>
+
+
+    <!--Declaracino de variables dentro de nuestra plantilla-->
+
+    {{with $valor:="esta es una variable"}}
+        <p>{{$valor}}</p>
+        {{end}}
+        <!--la variable solo tiene vida dentreo de este bloque-->
+
+
+        <!--tambien podemos hacer condicionales y varias operaciones-->
+        {{with $edad := .Edad}}
+            <p>la edad es {{$edad}}</p>
+
+      
+        {{end}}
+
+        {{with $valor := "juniors"}}
+        {{end}}
+
+
+</body>
+</html>
